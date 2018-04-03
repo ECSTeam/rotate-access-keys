@@ -3,17 +3,17 @@
 expiration_date=$(date -v -15d +%Y-%m-%d)
 
 
-#  $1 is the expiration date
-#  $2 is the date to compare to
+#  $1 is the date to compare to
+#  $2 is the expiration date
 #  $3 is the iam user id
-function isOlder()
+function isOlderThan()
 {
   if [[ $1 < $2 ]]
   then
-    FILE_PREFIX=$(echo $3 |sed 's/@/_/')
-    echo "./rotate-iam-user-key.sh  -a accessKeys.csv -s s3://morgan-test2/junk.test -c ${FILE_PREFIX}.csv -u ${3} -j ${FILE_PREFIX}.json"
+    return 0
   else
-    echo "$3 does not need rotation"
+#    echo "$3 does not need rotation"
+    return 1
   fi
 }
 
