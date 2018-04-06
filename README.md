@@ -17,7 +17,7 @@ options:
      (-d 15 = 15 days and older will be rotated)
  -h  This help text
  -s  S3 Bucket filename to test access for the new keys.
- -1  Preview the users needing rotation
+ -1  Preview the users needing rotation (without making changes)
 ```
 
 ## If using `AWS`:
