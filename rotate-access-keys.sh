@@ -86,7 +86,7 @@ function rotateAws() {
       ((needingRotation = needingRotation + 1))
       echo "Need to rotate" $XUSER
       FILE_PREFIX=$(echo $XUSER |sed 's/@/_/')
-      $PREVIEW_COMMAND "${SCRIPT_DIR}/aws/rotate-iam-user-key.sh  -a ${ACCESS_KEY_FILE} -s ${S3_TEST_FILE} -u ${XUSER} -j ${FILE_PREFIX}.json"
+      $PREVIEW_COMMAND ${SCRIPT_DIR}/aws/rotate-iam-user-key.sh  -a ${ACCESS_KEY_FILE} -s ${S3_TEST_FILE} -u ${XUSER} -j ${FILE_PREFIX}.json
     fi
   #    $SCRIPT_DIR/aws/rotate-iam-user-key.sh $@
   done

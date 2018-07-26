@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -x
+# set -x
 # ================================================================
 # === DESCRIPTION
 # ================================================================
@@ -109,11 +109,11 @@ fi
 
 function ConfigureAwsCli() {
 # Configure the AWS command-line tool with the proper credentials
-
     if [[ ! -z "$AWS_KEY_FILE" ]] ; then
+        cp ${AWS_KEY_FILE}.backup ${AWS_KEY_FILE}
         echo "Using the AWS administrator key file specified."
-        AWS_ACCESS_KEY_ID=$(awk -F ',' 'NR==2 {print $1}' "$AWS_KEY_FILE")
-        AWS_SECRET_ACCESS_KEY=$(awk -F ',' 'NR==2 {print $2}' "$AWS_KEY_FILE")
+        AWS_ACCESS_KEY_ID=$(grep aws_access_key_id "$AWS_KEY_FILE" | cut -d ' ' -f3)
+        AWS_SECRET_ACCESS_KEY=$(grep aws_secret_access_key "$AWS_KEY_FILE" | cut -d ' ' -f3)
         # Configure temp profile
         aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
         aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY"
